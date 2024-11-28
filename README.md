@@ -72,7 +72,7 @@ I will be using a csv file from Keggler (The dataset has 13 features and 546 sam
 
 
 
-## Discussions
+## Discussions before development
 Initially, I aimed to train, validate, and evaluate the model using data from Swedish housing. I started by exploring the pyscbwrapper library from Statistics Sweden (SCB) to access their API, but I couldn't find the specific data I needed. Additionally, I preferred not to incur costs for accessing particular datasets.
 
 Next, I investigated Hemnet and Booli to see if they provided relevant data. However, Hemnet doesn’t make such data available publicly, and while Booli used to have an API, it is no longer accessible. I also considered web scraping data from Hemnet or Booli, but this approach seemed legally questionable without explicit permission. Since both sites lack APIs, I chose not to pursue scraping further.
@@ -82,3 +82,8 @@ After an extensive search, I found a dataset on GitHub containing prices for Sto
 Ultimately, I selected a CSV file from Kaggle containing 546 rows of housing data for this project, i think its a good first data set for learning supervised learning. It dosent have missing values and the format looks good but i have to do some cleaning, normalization and changing some colums to binary format instead. 
 
 As machine learning and python is a new feald for me, I decided not to go for reinforcements learning and unsupertized learning as my first project. I think i found a good starter data set for learning. And supervised learning seamed like the best option to start with with the time limitations in mind. And if it goes to well i can always add more or focus on learning and understanding. 
+
+## Discussions during development
+
+
+in the dataset i have one feature named furnishingstatus with the values furnished, semi-furnished and unfurnished. I think this maybe can cause Multicollinearity. If i change the values to numerical values, it may be untuperd as orderd. One option would be to use one-hot encoding. i can then use use drop_first=True to reducing the risk of multicollinearity by removing redundant column. 
