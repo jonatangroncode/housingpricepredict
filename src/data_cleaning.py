@@ -1,5 +1,8 @@
-
+from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 
 df = pd.read_csv('../data/housing_data.csv')
 
@@ -37,11 +40,34 @@ for col in boolean_columns:
 
 
 
+
+
+df.to_csv('../data/cleaning_data_step2.csv', index=False)
+
+df = pd.read_csv('../data/cleaning_data_step2.csv')
+
+scaler = MinMaxScaler()
+df['area_normalized'] = scaler.fit_transform(df[['area']])
+
+df['area'] = df['area_normalized']
+df.drop(columns=['area_normalized'], inplace=True)
+
+df.to_csv('../data/cleaning_data_step3.csv', index=False)
+
 print(df.head())
 
+binary_columns = ['mainroad', 'guestroom', 'basement', 'hotwaterheating', 'airconditioning', 'prefarea', 'semi_furnished', 'unfurnished']
+for col in binary_columns:
+    print(f"{col}: {df[col].unique()}")
 
-df.to_csv('../data/clean_data_step2.csv', index=False)
+print(df.isnull().sum())
 
+correlation_matrix = df.corr()
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
+plt.show()
+
+df_cleaned = df.drop(columns=["hotwaterheating", "semi_furnished"])
+df_cleaned.to_csv('../data/cleaned_data.csv', index=False)
 
 #todo 
 #1 convert variables to binary format 

@@ -163,3 +163,4 @@ cython_debug/
 
 # processed files
 /data/cleaning_data_*.csv
+/data/cleaned_data.csv
